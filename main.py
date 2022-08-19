@@ -10,6 +10,8 @@ driver.get("https://www.amazon.com/dp/B0797HZ8W1/ref=as_li_ss_tl?SubscriptionId=
 
 dollars = driver.find_element(By.CLASS_NAME, "a-price-whole")
 cents = driver.find_element(By.CLASS_NAME, "a-price-fraction")
-print(dollars.text + "." + cents.text)
+# print(dollars.text + "." + cents.text)
+
+
 
 driver.close()
