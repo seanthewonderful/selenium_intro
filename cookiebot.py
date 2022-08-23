@@ -15,11 +15,6 @@ cookie = driver.find_element(By.ID, "cookie")
 
 items = driver.find_elements(By.CSS_SELECTOR, "#store div")
 item_ids = [item.get_attribute('id') for item in items]
-# item_ids2 = [item for item in items]
-
-# print(items)
-# print(item_ids)
-# print(item_ids2)
 
 five_mins = time.time() + 60*5
 five_secs = time.time() + 5
@@ -38,15 +33,18 @@ while True:
 
         for k, v in shop_dict.items():
             money = int(driver.find_element(By.ID, "money").text.split(" ")[-1].replace(",",""))
-            print(money)
-            print(k)
+
             if money > k:
+                buy = driver.find_element(By.ID, v)
+                buy.click()
+                k = int(driver.find_element(By.CSS_SELECTOR, f"#{v} b").text.split(" ")[-1].replace(",", ""))
                 
-                while money > k:
-                    driver.find_element(By.ID, v).click()
-                    money = int(driver.find_element(By.ID, "money").text.split(" ")[-1].replace(",",""))
-                    # k = int(driver.find_element(By.ID, v).text.split(" ")[-1].replace(",", ""))
-                    k = int(driver.find_element(By.CSS_SELECTOR, f"#{v} b").text.split(" ")[-1].replace(",", ""))
+                # while money > k:
+                #     print("$: ", money)
+                #     print("K: ", k)
+                #     driver.find_element(By.ID, v).click()
+                #     money = int(driver.find_element(By.ID, "money").text.split(" ")[-1].replace(",",""))
+                #     k = int(driver.find_element(By.CSS_SELECTOR, f"#{v} b").text.split(" ")[-1].replace(",", ""))
 
         five_secs = time.time() + 5
     
